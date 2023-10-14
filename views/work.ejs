@@ -1,0 +1,38 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <%- include('partials/header.ejs') %>
+    <div class="content">
+      <h1>
+        Work list for: <%= new Date().toLocaleDateString("en-US", { year:
+        "numeric" , month: "long" , day: "numeric" ,}) %>
+      </h1>
+      <ul>
+        <% if (locals.work) {%> <% for( let i=0; i < work.length; i++ ) { %>
+        <li>
+          <label class="form-control">
+            <input type="checkbox" name="checkbox" />
+            <div class="list"><%= work[i] %></div>
+          </label>
+        </li>
+        <% } %> <% } %>
+        <li>
+          <form action="/work" method="POST" class="submit">
+            <input
+              type="text"
+              name="task"
+              placeholder="Add a task!"
+              autocomplete="off"
+            />
+            <input type="submit" value="+" />
+          </form>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
